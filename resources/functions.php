@@ -13,12 +13,13 @@ function query($sql){
     return mysqli_query($connection, $sql);
 }
 
+
 /* Custom function confirming connection to the db
 */
-function confirm(){
+function confirm($result){
     global $connection;
     if(!$result){
-        die("QUERY FAILED. REASON: " . mysqli_error($connection));
+        die("QUERY FAILED" . mysqli_error($connection));
     }
 }
 
@@ -26,7 +27,7 @@ function confirm(){
 /* Custom function for fetch data from db
 */
 function fetch_array($result){
-    return mysqli_query($result);
+    return mysqli_fetch_array($result);
 }
 
 
@@ -36,5 +37,17 @@ function escape_string($string){
     global $connection;
     return mysqli_real_escape_string($connection, $string);
 }
+
+/* Custom function for 
+*/
+function get_products(){
+    $query = query("SELECT * FROM products");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+        echo $row['product_price'];
+    }
+}
+
 
 ?>
