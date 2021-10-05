@@ -4,6 +4,11 @@ ob_start();
 
 session_start();
 
+/* Displaying the errors if there is any
+*/
+ini_set('display_errors',1); 
+error_reporting(E_ALL);
+
 /* \ or / depending on what system you are
 */
 defined("DS") ? null : define("DS", DIRECTORY_SEPARATOR);
