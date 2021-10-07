@@ -38,7 +38,7 @@ function escape_string($string){
     return mysqli_real_escape_string($connection, $string);
 }
 
-/* Custom function for 
+/* Custom function for fetching all products from the db
 */
 function get_products(){
     $query = query("SELECT * FROM products");
@@ -64,6 +64,24 @@ function get_products(){
 
         echo $product;
     }
+}
+
+
+/* Custom function for fetching all categories from the db
+*/
+function get_categories(){
+    $query = query("SELECT * FROM categories");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+        $category = <<<DELIMETER
+
+        <a href='category.php?id={$row['cat_id']}' class='list-group-item'>{$row['cat_title']}</a>
+
+        DELIMETER;
+
+        echo $category;
+    };
 }
 
 
