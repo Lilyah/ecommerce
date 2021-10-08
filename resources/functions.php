@@ -52,7 +52,7 @@ function get_products(){
                 <a href="item.php?id={$row['product_id']}"><img src="{$row['product_image']}" alt=""></a>
                 <div class="caption">
                     <h4 class="pull-right">&#36;{$row['product_price']}</h4>
-                    <h4><a href="product.html">{$row['product_title']}</a>
+                    <h4><a href="item.php?id={$row['product_id']}">{$row['product_title']}</a>
                     </h4>
                     <p>{$row['product_description']}</p>
                     <a class="btn btn-primary" target="_blank" href="#">View Product</a>
