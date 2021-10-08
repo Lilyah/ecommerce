@@ -13,14 +13,11 @@ include(TEMPLATE_FRONT . "/header.php");
 
        <!-- Side Navigation -->
 
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="category.html" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
-                </div>
-            </div>
+        <?php
+        /* TEMPLATE_FRONT is custom defined in resources/config.php
+        */
+        include(TEMPLATE_FRONT . "/side_nav.php")
+        ?>  
 
 <div class="col-md-9">
 
