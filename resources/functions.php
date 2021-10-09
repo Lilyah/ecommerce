@@ -85,4 +85,68 @@ function get_categories(){
 }
 
 
+/* Custom function for fetching cpesific category
+*/
+function get_category(){
+    $query = query("SELECT * FROM categories WHERE cat_id=" . escape_string($_GET['id']) . " ");
+    confirm($query);    
+
+    while($row = fetch_array($query)){
+        $category = <<<DELIMETER
+
+        <header class="jumbotron hero-spacer">
+            <h1>Some title here</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+            <p><a class="btn btn-primary btn-large">Call to action!</a>
+            </p>
+        </header>
+
+        <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>{$row['cat_title']}</h3>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        DELIMETER;
+
+        echo $category;
+    };
+
+}
+
+
+/* Custom function for fetching all products from specific category
+*/
+function get_products_in_cat_page(){
+    $query = query("SELECT * FROM products WHERE product_category_id = " . escape_string($_GET['id']) . " ");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+        $products = <<<DELIMETER
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="{$row['product_image']}" alt="">
+                    <div class="caption">
+                        <h3>{$row['product_title']}</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <p>
+                            <a href="item.php?id={$row['product_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+        DELIMETER;
+
+        echo $products;
+    }
+
+}
+
+
 ?>
