@@ -38,6 +38,29 @@ function escape_string($string){
     return mysqli_real_escape_string($connection, $string);
 }
 
+
+/* Custom function for appearance of message
+*/
+function set_message($msg){
+    if(!empty($msg)){
+        $_SESSION['message'] = $msg;
+    } else {
+        $msg = "";
+    }
+}
+
+
+/* Custom function for display of message
+*/
+function display_message(){
+    if(isset($_SESSION['message'])){
+        echo $_SESSION['message'];
+        unset($_SESSION['message']); /* Whe refresh the page the message wil dissapear */
+    }
+}
+
+
+
 /* Custom function for fetching all products from the db
 */
 function get_products(){
@@ -164,7 +187,7 @@ function get_products_in_shop_page(){
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         <p>
                             <a href="item.php?id={$row['product_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['product_id']}" class="btn btn-default">More Info</a>
-                        </p>
+                        </ p>
                     </div>
                 </div>
             </div>
@@ -173,6 +196,29 @@ function get_products_in_shop_page(){
 
         echo $products;
     }
+
+}
+
+
+/* Custom function for login user
+*/
+function login_user(){
+    if(isset($_POST['submit'])){ /* Check for the submit button */
+       $username = escape_string($_POST['username']);
+       $user_password = escape_string($_POST['user_password']);
+
+       $query = query("SELECT * FROM users WHERE username = '{$username}' AND user_password = '{$user_password}' ");
+       confirm($query);
+
+       if(mysqli_num_rows($query) == 0){
+           set_message("Your password or username are wrong");
+           redirect("login");
+       } else {
+           redirect("admin/index");
+           set_message("Welcome to admin, {$username}!");
+       }
+    }
+
 
 }
 
