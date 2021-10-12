@@ -196,7 +196,6 @@ function get_products_in_shop_page(){
 
         echo $products;
     }
-
 }
 
 
@@ -218,8 +217,32 @@ function login_user(){
            set_message("Welcome to admin, {$username}!");
        }
     }
+}
 
 
+/* Custom function for sending message from contact form
+/* The purpose of this function is FAKE functionality
+*/
+function send_message(){
+    if(isset($_POST['submit'])){
+        $to = "reciever_email@fakedomain.com";
+        $from_name = $_POST['name'];
+        $email = $_POST['email'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+
+        $headers = "From: {$from_name} {$email}";
+
+        $result = mail($to, $subject, $message, $headers);
+
+        if(!$result){
+            set_message("Your message has not been send");
+            redirect("contact");
+        } else {
+            set_message("Your message has been send");
+            redirect("contact");
+        }
+    }
 }
 
 
