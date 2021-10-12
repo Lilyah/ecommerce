@@ -3,8 +3,12 @@
 require_once("../resources/config.php");
 
 include(TEMPLATE_FRONT .  "/header.php");
+include("cart.php");
 
-echo $_SESSION['product_2'];
+// For dev purposes
+if(isset($_SESSION['product_2'])){
+    echo ($_SESSION['product_2']);
+};
 
 ?>
 
@@ -33,13 +37,7 @@ echo $_SESSION['product_2'];
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>apple</td>
-                <td>$23</td>
-                <td>3</td>
-                <td>2</td>
-              
-            </tr>
+            <?php cart(); ?>
         </tbody>
     </table>
 </form>
