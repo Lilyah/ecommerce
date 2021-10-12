@@ -36,22 +36,40 @@ if(isset($_GET['delete'])){
 /* Displaying items in cart
 */
 function cart(){
-    $query = query("SELECT * FROM products");
-    confirm($query);
 
-    while($row = fetch_array($query)){
-        $product = <<<DELIMETER
-        <tr>
-        <td>{$row['product_title']}</td>
-        <td>{$row['product_price']}</td>
-        <td>3</td>
-        <td>2</td>
-        <td><a href="cart?remove=2">Remove</a></td>
-        <td><a href="cart?delete=2">Delete</a></td>
-        </tr>
-        DELIMETER;
+        // If the $_SESSION if "product_"
+    foreach($_SESSION as $name => $value){
+
+        /* Not showing products if they are not added to the cart */
+        if($value > 0){
+
+            if(substr($name, 0, 8) == "product_"){
+
+                $lenght = strlen($name) - 8;
+                $id = substr($name, 8, $lenght);
+
+                $query = query("SELECT * FROM products WHERE product_id = " . escape_string($id) . " ");
+                confirm($query);
+
+                while($row = fetch_array($query)){
+                    $product = <<<DELIMETER
+                    <tr>
+                        <td>{$row['product_title']}</td>
+                        <td>{$row['product_price']}</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>
+                            <a class="btn btn-success" href="cart?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a class="btn btn-warning" href="cart?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
+                            <a class="btn btn-danger" href="cart?delete={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                    </tr>
+                DELIMETER;
     
-        echo $product;
+                echo $product;
+                }
+            }
+        }
     }
 }
 
