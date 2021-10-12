@@ -2,6 +2,8 @@
 
 require_once("../resources/config.php");
 
+/* Adding one quantity to the cart 
+*/
 if(isset($_GET['add'])){
     $query = query("SELECT * FROM products WHERE product_id = " . escape_string($_GET['add']) . "");
     confirm($query);
@@ -16,6 +18,21 @@ if(isset($_GET['add'])){
         }
     }
 }
+
+/* Removing one from the cart 
+*/
+if(isset($_GET['remove'])){
+    $_SESSION['product_' . $_GET['remove']] --; 
+    redirect("checkout");    
+}
+
+/* Deleting the record from the cart 
+*/
+if(isset($_GET['delete'])){
+    $_SESSION['product_' . $_GET['delete']] = '0'; 
+    redirect("checkout");    
+}
+
 
 ?>
 
