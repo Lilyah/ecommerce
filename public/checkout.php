@@ -4,6 +4,8 @@ require_once("../resources/config.php");
 
 include(TEMPLATE_FRONT .  "/header.php");
 
+echo $_SESSION['product_2'];
+
 ?>
 
 
@@ -14,6 +16,8 @@ include(TEMPLATE_FRONT .  "/header.php");
 <!-- /.row --> 
 
 <div class="row">
+
+<h4 class="text-center bg-danger"><?php display_message()?></h4>
 
       <h1>Checkout</h1>
 
