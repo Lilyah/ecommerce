@@ -4,6 +4,10 @@ ob_start();
 
 session_start();
 
+/* For dev purposes
+*/
+//session_destroy();
+
 /* Displaying the errors if there is any
 */
 ini_set('display_errors',1); 
