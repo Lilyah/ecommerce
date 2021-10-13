@@ -3,12 +3,8 @@
 require_once("../resources/config.php");
 
 include(TEMPLATE_FRONT .  "/header.php");
-include("cart.php");
 
-// For dev purposes
-if(isset($_SESSION['product_2'])){
-    echo ($_SESSION['item_total']);
-};
+include("cart.php");
 
 ?>
 
@@ -44,7 +40,7 @@ if(isset($_SESSION['product_2'])){
 
 
 
-<!--  ***********CART TOTALS*************-->
+<!-- ***********CART TOTALS************* -->
             
 <div class="col-xs-4 pull-right ">
 <h2>Cart Totals</h2>
@@ -53,7 +49,15 @@ if(isset($_SESSION['product_2'])){
 
 <tr class="cart-subtotal">
 <th>Items:</th>
-<td><span class="amount">4</span></td>
+<td><span class="amount">
+    <?php 
+    if(isset($_SESSION['item_quantity'])){
+        echo $_SESSION['item_quantity'];
+    } else {
+        echo "0";
+    }
+    ?>
+</span></td>
 </tr>
 <tr class="shipping">
 <th>Shipping and Handling</th>
