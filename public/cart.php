@@ -37,7 +37,9 @@ if(isset($_GET['delete'])){
 */
 function cart(){
 
-        // If the $_SESSION if "product_"
+    $total = 0;
+
+    // If the $_SESSION is "product_"
     foreach($_SESSION as $name => $value){
 
         /* Not showing products if they are not added to the cart */
@@ -68,6 +70,8 @@ function cart(){
                 DELIMETER;
     
                 echo $product;
+
+                $_SESSION['item_total'] = $total += $subtotal;
                 }
             }
         }
