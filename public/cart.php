@@ -52,12 +52,13 @@ function cart(){
                 confirm($query);
 
                 while($row = fetch_array($query)){
+                    $subtotal = $row['product_price']*$value;
                     $product = <<<DELIMETER
                     <tr>
                         <td>{$row['product_title']}</td>
-                        <td>{$row['product_price']}</td>
+                        <td>&#36;{$row['product_price']}</td>
                         <td>{$value}</td>
-                        <td>2</td>
+                        <td>&#36;{$subtotal}</td>
                         <td>
                             <a class="btn btn-success" href="cart?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
                             <a class="btn btn-warning" href="cart?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
