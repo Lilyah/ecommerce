@@ -21,7 +21,12 @@ include("cart.php");
 
       <h1>Checkout</h1>
 
-<form action="">
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+  <input type="hidden" name="cmd" value="_cart">
+  <input type="hidden" name="business" value="sb-47rlne6885008@business.example.com">
+  <input type="hidden" name="currency_code" value="USD">
+  <input type="hidden" name="upload" value="1">
+
     <table class="table table-striped">
         <thead>
           <tr>
@@ -36,6 +41,9 @@ include("cart.php");
             <?php cart(); ?>
         </tbody>
     </table>
+    <input type="image" name="upload"
+    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+    alt="PayPal - The safer, easier way to pay online">
 </form>
 
 

@@ -44,6 +44,13 @@ function cart(){
     $item_quantity = 0;
     $total = 0;
 
+    /* Default values for PayPal
+    */
+    $item_name = 1;
+    $item_number = 1;
+    $amount = 1;
+    $quantity = 1;
+
     // If the $_SESSION is "product_"
     foreach($_SESSION as $name => $value){
 
@@ -73,9 +80,19 @@ function cart(){
                             <a class="btn btn-danger" href="cart?delete={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
+ 
+                    <input type="hidden" name="item_name_{$item_name}" value="{$row['product_title']}">
+                    <input type="hidden" name="item_number_{$item_number}" value="{$row['product_id']}">
+                    <input type="hidden" name="amount_{$amount}" value="{$row['product_price']}">
+                    <input type="hidden" name="quantity_{$quantity}" value="{$value}">
                 DELIMETER;
     
                 echo $product;
+
+                $item_name++;
+                $item_number++;
+                $amount++;
+                $quantity++;
 
                 $_SESSION['item_quantity'] = $item_quantity;
                 $_SESSION['item_total'] = $total += $subtotal;
