@@ -7,7 +7,7 @@ include("cart.php");
 
 // For dev purposes
 if(isset($_SESSION['product_2'])){
-    echo ($_SESSION['product_2']);
+    echo ($_SESSION['item_total']);
 };
 
 ?>
@@ -62,7 +62,15 @@ if(isset($_SESSION['product_2'])){
 
 <tr class="order-total">
 <th>Order Total</th>
-<td><strong><span class="amount">$3444</span></strong> </td>
+<td><strong><span class="amount">&#36;
+    <?php 
+    if(isset($_SESSION['item_total'])){
+        echo $_SESSION['item_total'];
+    } else {
+        echo "0";
+    }
+    ?>
+    </span></strong> </td>
 </tr>
 
 
