@@ -18,9 +18,21 @@
                     <li>
                         <a href="login">Login</a>
                     </li>
-                    <li>
-                        <a href="admin">Admin</a>
-                    </li>
+
+                    <?php
+
+                    if(isset($_SESSION['username'])){
+                        $admin_button = <<<DELIMETER
+                        <li>
+                        <a href="admin/index.php">Admin</a>
+                        </li>
+                        DELIMETER;
+                
+                        echo $admin_button;
+                    } 
+                    
+                    ?>
+                
                      <li>
                         <a href="checkout">Checkout</a>
                     </li>
