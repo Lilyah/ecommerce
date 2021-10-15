@@ -15,9 +15,6 @@
                     <li>
                         <a href="shop">Shop</a>
                     </li>
-                    <li>
-                        <a href="login">Login</a>
-                    </li>
 
                     <?php
 
@@ -29,8 +26,16 @@
                         DELIMETER;
                 
                         echo $admin_button;
-                    } 
-                    
+                    } else {
+                        $login_button = <<<DELIMETER
+                        <li>
+                        <a href="login">Login</a>
+                        </li>
+                        DELIMETER;
+                
+                        echo $login_button;
+                    }
+
                     ?>
                 
                      <li>
