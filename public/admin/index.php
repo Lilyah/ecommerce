@@ -3,6 +3,10 @@
 require_once("../../resources/config.php");
 include(TEMPLATE_BACK  . "/header.php");
 
+if(!isset($_SESSION['username'])){
+    redirect("../../public/index.php");
+}
+
 ?>
 
 
