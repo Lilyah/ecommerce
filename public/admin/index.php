@@ -37,6 +37,18 @@ include(TEMPLATE_BACK  . "/header.php");
                     include(TEMPLATE_BACK . "/orders.php");
                 }
 
+                if(isset($_GET['add_product'])){
+                    include(TEMPLATE_BACK . "/add_product.php");
+                }
+
+                if(isset($_GET['products'])){
+                    include(TEMPLATE_BACK . "/products.php");
+                }
+
+                if(isset($_GET['categories'])){
+                    include(TEMPLATE_BACK . "/categories.php");
+                }
+
                 ?> 
 
 
