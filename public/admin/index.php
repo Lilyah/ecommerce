@@ -33,6 +33,10 @@ include(TEMPLATE_BACK  . "/header.php");
                     include(TEMPLATE_BACK . "/admin_content.php");
                 }; 
 
+                if(isset($_GET['orders'])){
+                    include(TEMPLATE_BACK . "/orders.php");
+                }
+
                 ?> 
 
 
