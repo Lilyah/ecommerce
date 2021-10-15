@@ -213,6 +213,7 @@ function login_user(){
            set_message("Your password or username are wrong");
            redirect("login");
        } else {
+           $_SESSION['username'] = $username; // start a session for login users
            redirect("admin/index");
            set_message("Welcome to admin, {$username}!");
        }
