@@ -21,7 +21,7 @@
                     if(isset($_SESSION['username'])){
                         $admin_button = <<<DELIMETER
                         <li>
-                        <a href="admin/index.php">Admin</a>
+                        <a href="admin/index">Admin</a>
                         </li>
                         DELIMETER;
                 
