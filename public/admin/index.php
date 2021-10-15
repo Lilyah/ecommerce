@@ -27,9 +27,13 @@ include(TEMPLATE_BACK  . "/header.php");
                 </div>
                 <!-- /.row -->
 
-                 <?php
-                 include(TEMPLATE_BACK  . "/admin_content.php");
-                 ?> 
+                <?php
+
+                if($_SERVER['REQUEST_URI'] == "/ecommerce/public/admin/index"){
+                    include(TEMPLATE_BACK . "/admin_content.php");
+                }; 
+
+                ?> 
 
 
             </div>
