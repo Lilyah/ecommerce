@@ -1,6 +1,6 @@
 <?php 
 
-require_once("../resources/config.php");
+require_once("config.php");
 
 /* Adding one quantity to the cart 
 */
@@ -11,10 +11,10 @@ if(isset($_GET['add'])){
     while($row = fetch_array($query)){
         if($row['product_quantity'] != $_SESSION['product_' . $_GET['add']]){ /* If there is no quantity of the product in the DB */
             $_SESSION['product_' . $_GET['add']] +=1; /* Adding to the cart one more */
-            redirect("checkout");
+            redirect("../public/checkout");
         } else {
             set_message("We only have " . $row['product_quantity'] . " available of this product.");
-            redirect("checkout");
+            redirect("../public/checkout");
         }
     }
 }
@@ -25,7 +25,7 @@ if(isset($_GET['remove'])){
     $_SESSION['product_' . $_GET['remove']] --; 
     unset($_SESSION['item_quantity']);
     unset($_SESSION['item_total']);
-    redirect("checkout");    
+    redirect("../public/checkout");    
 }
 
 /* Deleting the record from the cart 
@@ -34,7 +34,7 @@ if(isset($_GET['delete'])){
     $_SESSION['product_' . $_GET['delete']] = '0'; 
     unset($_SESSION['item_quantity']);
     unset($_SESSION['item_total']);
-    redirect("checkout");    
+    redirect("../public/checkout");    
 }
 
 /* Displaying items in cart
@@ -75,9 +75,9 @@ function cart(){
                         <td>{$value}</td>
                         <td>&#36;{$subtotal}</td>
                         <td>
-                            <a class="btn btn-success" href="cart?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a class="btn btn-warning" href="cart?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
-                            <a class="btn btn-danger" href="cart?delete={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a class="btn btn-success" href="../resources/cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a class="btn btn-warning" href="../resources/cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
+                            <a class="btn btn-danger" href="../resources/cart.php?delete={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
  
