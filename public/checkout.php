@@ -4,8 +4,6 @@ require_once("../resources/config.php");
 
 include(TEMPLATE_FRONT .  "/header.php");
 
-include("cart.php");
-
 ?>
 
 

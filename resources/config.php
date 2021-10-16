@@ -35,5 +35,6 @@ $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 
 require_once("functions.php");
+require_once("cart.php");
 
 ?>
