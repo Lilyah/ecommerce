@@ -117,6 +117,63 @@ function show_paypal_button(){
 }
 
 
+/* Displaying items in cart
+*/
+function report(){
+
+    /* Thank you page will display only if the transaction was successful
+    */
+    if(isset($_GET['tx'])){
+        $amount = $_GET['amt'];
+        $currency = $_GET['cc'];
+        $transasction = $_GET['tx'];
+        $status = $_GET['st'];
+
+        $send_order = query("INSERT INTO orders (order_amount, order_transaction, order_status, order_currency) VALUES ('{$amount}', '{$transasction}', '{$status}', '{$currency}')");
+
+        $last_id = last_id();
+        confirm($send_order);
+
+        $item_quantity = 0;
+        $total = 0;
+
+        // If the $_SESSION is "product_"
+        foreach($_SESSION as $name => $value){
+
+            /* Not showing products if they are not added to the cart */
+            if($value > 0){
+
+                if(substr($name, 0, 8) == "product_"){
+
+                    $lenght = strlen($name) - 8;
+                    $id = substr($name, 8, $lenght);
+
+                    $query = query("SELECT * FROM products WHERE product_id = " . escape_string($id) . " ");
+                    confirm($query);
+
+                    while($row = fetch_array($query)){
+                        $product_price = $row['product_price'];
+                        $subtotal = $row['product_price']*$value;
+                        $item_quantity += $value;
+
+                        $insert_report = query("INSERT INTO reports (order_id, product_id, product_price, product_quantity) VALUES ('{$last_id}', '{$id}', '{$product_price}', '{$value}')");
+                        confirm($insert_report);
+                    }
+
+                    echo $item_quantity;
+                    $total += $subtotal;
+                
+                }
+            }
+        }
+
+        //session_destroy();
+
+    } else {
+        redirect("index");
+    }
+}
+
 ?>
 
 
