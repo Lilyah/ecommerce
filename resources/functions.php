@@ -247,4 +247,12 @@ function send_message(){
 }
 
 
+/* Will give the last inserted id
+*/
+function last_id(){
+    global $connection;
+    return mysqli_insert_id($connection);
+}
+
+
 ?>
