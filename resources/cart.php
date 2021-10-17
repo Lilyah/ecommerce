@@ -129,11 +129,6 @@ function report(){
         $transasction = $_GET['tx'];
         $status = $_GET['st'];
 
-        $send_order = query("INSERT INTO orders (order_amount, order_transaction, order_status, order_currency) VALUES ('{$amount}', '{$transasction}', '{$status}', '{$currency}')");
-
-        $last_id = last_id();
-        confirm($send_order);
-
         $item_quantity = 0;
         $total = 0;
 
@@ -147,6 +142,11 @@ function report(){
 
                     $lenght = strlen($name) - 8;
                     $id = substr($name, 8, $lenght);
+
+                    $send_order = query("INSERT INTO orders (order_amount, order_transaction, order_status, order_currency) VALUES ('{$amount}', '{$transasction}', '{$status}', '{$currency}')");
+
+                    $last_id = last_id();
+                    confirm($send_order);
 
                     $query = query("SELECT * FROM products WHERE product_id = " . escape_string($id) . " ");
                     confirm($query);
@@ -167,7 +167,7 @@ function report(){
             }
         }
 
-        //session_destroy();
+        session_destroy();
 
     } else {
         redirect("index");
