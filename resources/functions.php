@@ -286,7 +286,7 @@ function display_orders(){
 */
 function get_products_in_admin(){
 
-    $query = query("SELECT * FROM products");
+    $query = query("SELECT * FROM products ORDER BY product_id DESC");
     confirm($query);
 
     while($row = fetch_array($query)){
@@ -326,7 +326,7 @@ function add_product(){
 
         move_uploaded_file($product_image_tmp, UPLOAD_DIRECTORY . DS . $product_image);
 
-        $query = query("INSERT INTO products (product_title, product_category_id, product_price, product_quantity, product_description, product_image, product_short_desc) VALUES ('{$product_title}', '{$product_category_id}', '{$product_price}', '{$product_quantity}', '{$product_description}', {$product_image}', '{$product_short_desc}')");
+        $query = query("INSERT INTO products (product_title, product_category_id, product_price, product_quantity, product_description, product_image, short_desc) VALUES ('{$product_title}', '1', '{$product_price}', '{$product_quantity}', '{$product_description}', '{$product_image}', '{$product_short_desc}')");
         $last_id = last_id();
         confirm($query);
         set_message("New product was added: ID {$last_id}");
