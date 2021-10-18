@@ -3,6 +3,11 @@
                         <h1 class="page-header">
                             All Orders
                         </h1>
+
+                        <h4 class="text-center bg-success">
+                            <?php display_message(); ?>
+                        </h4>
+
                     </div>
 
                     <div class="row">
