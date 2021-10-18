@@ -1,51 +1,43 @@
-
-
-        <div id="page-wrapper">
+          <div id="page-wrapper">
 
             <div class="container-fluid">
 
-             <div class="row">
+              <div class="row">
 
-<h1 class="page-header">
-   All Products
+                <h1 class="page-header">
+                  All Products
+                </h1>
 
-</h1>
-<table class="table table-hover">
+                <table class="table table-hover">
+                  <thead>
 
+                    <tr>
+                      <th>Id</th>
+                      <th>Title</th>
+                      <th>Image</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Quantity in stock</th>
+                    </tr>
 
-    <thead>
+                  </thead>
 
-      <tr>
-           <th>Id</th>
-           <th>Title</th>
-           <th>Category</th>
-           <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
+                  <tbody>
 
-      <tr>
-            <td>20</td>
-            <td>Nikon 234 <br>
-              <img src="http://placehold.it/62x62" alt="">
-            </td>
-            <td>Category</td>
-            <td>123</td>
-        </tr>
-      
+                    <?php 
+                    get_products_in_admin();
+                    ?>
 
+                  </tbody>
+                </table>
 
-  </tbody>
-</table>
-
-
-             </div>
+              </div>
 
             </div>
             <!-- /.container-fluid -->
 
-        </div>
-        <!-- /#page-wrapper -->
+          </div>
+          <!-- /#page-wrapper -->
 
 
 
