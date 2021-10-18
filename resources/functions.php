@@ -150,11 +150,12 @@ function get_products_in_cat_page(){
     confirm($query);
 
     while($row = fetch_array($query)){
+        $product_image = display_picture($row['product_image']);
         $products = <<<DELIMETER
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="{$row['product_image']}" alt="">
+                    <img src="../resources/{$product_image}" alt="">
                     <div class="caption">
                         <h3>{$row['product_title']}</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
