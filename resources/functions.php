@@ -310,4 +310,28 @@ function get_products_in_admin(){
 
 }
 
+
+/* Adding products in admin
+*/
+function add_product(){
+    if(isset($_POST['publish'])){
+        $product_title          = escape_string($_POST['product_title']);
+        $product_category_id    = escape_string($_POST['product_category_id']);
+        $product_price          = escape_string($_POST['product_price']);
+        $product_quantity       = escape_string($_POST['product_quantity']);
+        $product_description    = escape_string($_POST['product_description']);
+        $product_image          = escape_string($_FILES['file']['name']);
+        $product_image_tmp      = escape_string($_FILES['file']['tmp_name']); // temporary file location
+        $product_short_desc     = escape_string($_POST['short_desc']);
+
+        move_uploaded_file($product_image_tmp, UPLOAD_DIRECTORY . DS . $product_image);
+
+        $query = query("INSERT INTO products (product_title, product_category_id, product_price, product_quantity, product_description, product_image, product_short_desc) VALUES ('{$product_title}', '{$product_category_id}', '{$product_price}', '{$product_quantity}', '{$product_description}', {$product_image}', '{$product_short_desc}')");
+        $last_id = last_id();
+        confirm($query);
+        set_message("New product was added: ID {$last_id}");
+        redirect("index.php?products");
+    }
+}
+
 ?>
