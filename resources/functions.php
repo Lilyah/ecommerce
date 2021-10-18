@@ -282,4 +282,30 @@ function display_orders(){
 }
 
 
+/* Display products in admin
+*/
+function get_products_in_admin(){
+
+    $query = query("SELECT * FROM products");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+        $products = <<<DELIMETER
+
+            <tr>
+                <td>{$row['product_id']}</td>
+                <td>{$row['product_title']}</td>
+                <td><img src="{$row['product_image']}" alt=""></td>
+                <td>{$row['product_category_id']}</td>
+                <td>{$row['product_price']}</td>
+                <td>{$row['product_quantity']}</td>
+            </tr>
+
+        DELIMETER;
+
+        echo $products;
+    }
+
+}
+
 ?>
