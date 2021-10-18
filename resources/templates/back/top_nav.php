@@ -6,6 +6,7 @@
         <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand" href="index">SB Admin</a>
+    <a class="navbar-brand" href="../index">Home</a>
 </div>
 
 <!-- Top Menu Items -->
