@@ -119,7 +119,7 @@ function show_paypal_button(){
 
 /* Displaying items in cart
 */
-function report(){
+function proccess_transaction(){
 
     /* Thank you page will display only if the transaction was successful
     */
