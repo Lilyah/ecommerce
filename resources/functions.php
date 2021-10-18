@@ -290,12 +290,13 @@ function get_products_in_admin(){
     confirm($query);
 
     while($row = fetch_array($query)){
+        $category = show_product_category($row['product_category_id']);
         $products = <<<DELIMETER
             <tr>
                 <td>{$row['product_id']}</td>
                 <td>{$row['product_title']}</td>
                 <td><a href="index.php?edit_product&id={$row['product_id']}"><img src="{$row['product_image']}" alt=""></а></td>
-                <td>{$row['product_category_id']}</td>
+                <td>{$category}</td>
                 <td>{$row['product_price']}</td>
                 <td>{$row['product_quantity']}</td>
                 <td>
@@ -326,7 +327,7 @@ function add_product(){
 
         move_uploaded_file($product_image_tmp, UPLOAD_DIRECTORY . DS . $product_image);
 
-        $query = query("INSERT INTO products (product_title, product_category_id, product_price, product_quantity, product_description, product_image, short_desc) VALUES ('{$product_title}', '1', '{$product_price}', '{$product_quantity}', '{$product_description}', '{$product_image}', '{$product_short_desc}')");
+        $query = query("INSERT INTO products (product_title, product_category_id, product_price, product_quantity, product_description, product_image, short_desc) VALUES ('{$product_title}', '{$product_category_id}', '{$product_price}', '{$product_quantity}', '{$product_description}', '{$product_image}', '{$product_short_desc}')");
         $last_id = last_id();
         confirm($query);
         set_message("New product was added: ID {$last_id}");
@@ -334,4 +335,33 @@ function add_product(){
     }
 }
 
+
+/* Custom function for fetching all categories from the db
+*/
+function show_categories_add_product_page(){
+    $query = query("SELECT * FROM categories");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+    $category_options = <<<DELIMETER
+
+        <option value="{$row['cat_id']}">{$row['cat_title']}</option>
+
+    DELIMETER;
+
+    echo $category_options;
+    };
+}
+
+
+/* Showing category names in admin View products page based on its ID
+*/
+function show_product_category($product_category_id){
+    $category_query = query("SELECT * FROM categories WHERE cat_id = '{$product_category_id}' ");
+    confirm($category_query);
+
+    while($category_row = fetch_array($category_query)){
+        return $category_row['cat_title'];
+    }
+}
 ?>
