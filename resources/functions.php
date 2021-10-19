@@ -122,7 +122,6 @@ function get_categories_in_admin(){
             <td>{$row['cat_id']}</td>
             <td>{$row['cat_title']}</td>
             <td>
-                <a class="btn btn-warning" href="index.php?edit_category&id={$row['cat_id']}">Edit</a>
                 <a class="btn btn-danger" href="../../resources/templates/back/delete_category.php?id={$row['cat_id']}">Delete</a>
             </td>
         </tr>
