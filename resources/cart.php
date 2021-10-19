@@ -68,9 +68,11 @@ function cart(){
                 while($row = fetch_array($query)){
                     $subtotal = $row['product_price']*$value;
                     $item_quantity += $value;
+                    $product_image = display_picture($row['product_image']);
                     $product = <<<DELIMETER
                     <tr>
                         <td>{$row['product_title']}</td>
+                        <td><img width='100' src="../resources/{$product_image}" alt=""></td>
                         <td>&#36;{$row['product_price']}</td>
                         <td>{$value}</td>
                         <td>&#36;{$subtotal}</td>
