@@ -141,7 +141,7 @@ function add_category(){
        $query = query("INSERT INTO categories (cat_title) VALUES ('{$cat_title}') ");
        $last_id = last_id();
        confirm($query);
-       redirect("index.php?categories");       
+       set_message("New category was added: ID {$last_id}");
     }
 }
 
