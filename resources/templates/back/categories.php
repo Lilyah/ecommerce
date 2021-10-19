@@ -1,6 +1,5 @@
 <h1 class="page-header">
   Product Categories
-
 </h1>
 
 
@@ -13,14 +12,11 @@
             <input type="text" class="form-control">
         </div>
 
-        <div class="form-group">
-            
+        <div class="form-group"> 
             <input type="submit" class="btn btn-primary" value="Add Category">
         </div>      
 
-
     </form>
-
 
 </div>
 
@@ -28,22 +24,18 @@
 <div class="col-md-8">
 
     <table class="table">
-            <thead>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+            </tr>
+        </thead>
 
-        <tr>
-            <th>id</th>
-            <th>Title</th>
-        </tr>
-            </thead>
-
-
-    <tbody>
-        <tr>
-            <td>20</td>
-            <td>Example Title</td>
-        </tr>
-    </tbody>
-
-        </table>
+        <tbody>
+            <?php 
+            get_categories_in_admin();
+            ?>
+        </tbody>
+    </table>
 
 </div>

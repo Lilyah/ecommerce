@@ -109,6 +109,31 @@ function get_categories(){
 }
 
 
+/* Custom function for fetching all categories from the db and displaying them into admin/categories
+*/
+function get_categories_in_admin(){
+    $query = query("SELECT * FROM categories");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+        $category = <<<DELIMETER
+
+        <tr>
+            <td>{$row['cat_id']}</td>
+            <td>{$row['cat_title']}</td>
+            <td>
+                <a class="btn btn-warning" href="index.php?edit_category&id={$row['cat_id']}">Edit</a>
+                <a class="btn btn-danger" href="../../resources/templates/back/delete_category.php?id={$row['cat_id']}">Delete</a>
+            </td>
+        </tr>
+
+        DELIMETER;
+
+        echo $category;
+    };
+}
+
+
 /* Custom function for fetching cpesific category
 */
 function get_category(){
