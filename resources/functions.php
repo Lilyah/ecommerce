@@ -133,6 +133,8 @@ function get_categories_in_admin(){
 }
 
 
+/* Custom function for inserting new category in to the db
+*/
 function add_category(){
     if(isset($_POST['add_category']) && trim($_POST['cat_title'])){ /* Check for the submit button */
        $cat_title = escape_string($_POST['cat_title']);
@@ -208,6 +210,8 @@ function get_products_in_cat_page(){
     }
 
 }
+
+
 /* Custom function for fetching all products from specific category
 */
 function get_products_in_shop_page(){
@@ -483,6 +487,31 @@ function show_product_category($product_category_id){
 */
 function display_picture($picture){
     return "uploads" . DS . $picture;
+}
+
+
+/* Display all users in admin panel
+/* admin/users
+*/ 
+function display_users(){
+    $query = query("SELECT * FROM users");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+        $category = <<<DELIMETER
+
+            <tr>
+                <td>{$row['user_id']}</td>
+                <td>{$row['username']}</td>
+                <td>{$row['user_email']}</td>
+                <td>{$row['user_password']}</td>
+                <td><a class="btn btn-danger" href="../../resources/templates/back/delete_user.php?id={$row['user_id']}">Delete</a></td>
+            </tr>  
+
+        DELIMETER;
+
+        echo $category;
+    };
 }
 
 
