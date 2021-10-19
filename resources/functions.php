@@ -343,6 +343,75 @@ function add_product(){
 }
 
 
+/* Editing products in admin
+*/
+function update_product(){
+    if(isset($_POST['update'])){
+        $product_title          = escape_string($_POST['product_title']);
+        $product_category_id    = escape_string($_POST['product_category_id']);
+        $product_price          = escape_string($_POST['product_price']);
+        $product_quantity       = escape_string($_POST['product_quantity']);
+        $product_description    = escape_string($_POST['product_description']);
+        $product_short_desc     = escape_string($_POST['short_desc']);
+        $product_image          = escape_string($_FILES['file']['name']);
+        $product_image_tmp      = escape_string($_FILES['file']['tmp_name']); // temporary file location
+
+        if(empty($product_image)){
+            $get_picture = query("SELECT product_image FROM products WHERE product_id =" . escape_string($_GET['id']) . "");
+            confirm($get_picture);
+
+            while($picture = fetch_array($get_picture)){
+                $product_image = $picture['product_image'];
+            }
+        }
+
+        move_uploaded_file($product_image_tmp, UPLOAD_DIRECTORY . DS . $product_image);
+
+
+        $query = "UPDATE products SET ";
+        $query .= "product_title        = '{$product_title}', ";
+        $query .= "product_category_id  = '{$product_category_id}', ";
+        $query .= "product_price        = '{$product_price}', ";
+        $query .= "product_quantity     = '{$product_quantity}', ";
+        $query .= "product_description  = '{$product_description}', ";
+        $query .= "product_image        = '{$product_image}', ";
+        $query .= "short_desc           = '{$product_short_desc}' ";
+        $query .= "WHERE product_id =" . escape_string($_GET['id']);
+        $query = query($query);
+        confirm($query);
+        set_message("Product has been updated");
+        redirect("index.php?products");
+    }
+}
+
+
+/* Category from the database will be on top of the <option> list 
+/* and does not show again later in the list
+*/
+function show_categories_update_product()
+{
+    global $product_category_id;
+ 
+    $query = query("SELECT * FROM categories");
+    confirm($query);
+ 
+    while($row = fetch_array($query)){
+        if ($product_category_id != $row['cat_id']){
+            $category_options = <<<HTML
+ 
+                <option value="{$row['cat_id']}">{$row['cat_title']}</option>
+ 
+            HTML;
+        }
+        else{
+            $category_options = "";
+        }
+ 
+        echo $category_options;
+    }
+}
+
+
 /* Custom function for fetching all categories from the db
 */
 function show_categories_add_product_page(){
