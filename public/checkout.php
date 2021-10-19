@@ -33,7 +33,6 @@ include(TEMPLATE_FRONT .  "/header.php");
            <th>Price</th>
            <th>Quantity</th>
            <th>Sub-total</th>
-     
           </tr>
         </thead>
         <tbody>
