@@ -63,7 +63,7 @@ include(TEMPLATE_FRONT . "/header.php");
    
                 <form action="">
                     <div class="form-group">
-                        <a class="btn btn-primary" href="../resources/cart?add=<?php echo $row['product_id'] ?>">Add to cart</a>
+                        <a class="btn btn-primary" href="../resources/cart.php?add=<?php echo $row['product_id'] ?>">Add to cart</a>
                     </div>
                 </form>
 
