@@ -16,7 +16,7 @@
             <a href="index?categories"><i class="fa fa-fw fa-desktop"></i> Categories</a>
         </li>
         <li>
-            <a href="users"><i class="fa fa-fw fa-wrench"></i>Users</a>
+            <a href="index?users"><i class="fa fa-fw fa-wrench"></i>Users</a>
         </li>
     
     </ul>
