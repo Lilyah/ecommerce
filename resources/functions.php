@@ -134,6 +134,19 @@ function get_categories_in_admin(){
 }
 
 
+function add_category(){
+    if(isset($_POST['add_category'])){ /* Check for the submit button */
+       $cat_title = escape_string($_POST['cat_title']);
+
+       $query = query("INSERT INTO categories (cat_title) VALUES ('{$cat_title}') ");
+       $last_id = last_id();
+       confirm($query);
+       set_message("New category was added: ID {$last_id}");
+       redirect("index.php?categories");       
+    }
+}
+
+
 /* Custom function for fetching cpesific category
 */
 function get_category(){
