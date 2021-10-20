@@ -12,7 +12,7 @@
                             <?php display_message(); ?>
                         </h4>
 
-                        <a href="add_user.php" class="btn btn-primary">Add User</a>
+                        <a href="index.php?add_user" name="add_user" class="btn btn-primary">Add User</a>
 
                         <div class="col-md-12">
 
@@ -20,6 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
+                                        <th>Photo</th>
                                         <th>Username</th>
                                         <th>User Email</th>
                                         <th>User Password</th>
