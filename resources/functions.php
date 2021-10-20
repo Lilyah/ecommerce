@@ -498,10 +498,12 @@ function display_users(){
     confirm($query);
 
     while($row = fetch_array($query)){
+        $user_photo = display_picture($row['user_photo']);
         $category = <<<DELIMETER
 
             <tr>
                 <td>{$row['user_id']}</td>
+                <td><img width='30' src="../../resources/{$user_photo}" alt=""></td>
                 <td>{$row['username']}</td>
                 <td>{$row['user_email']}</td>
                 <td>{$row['user_password']}</td>
@@ -514,5 +516,25 @@ function display_users(){
     };
 }
 
+
+/* Adding users in admin
+*/
+function add_user(){
+    if(isset($_POST['add_user'])){
+        $username         = escape_string($_POST['username']);
+        $user_email       = escape_string($_POST['user_email']);
+        $user_password    = escape_string($_POST['user_password']);
+        $user_photo       = escape_string($_FILES['file']['name']);
+        $user_photo_tmp   = escape_string($_FILES['file']['tmp_name']); // temporary file location
+
+        move_uploaded_file($user_photo_tmp, UPLOAD_DIRECTORY . DS . $user_photo);
+
+        $query = query("INSERT INTO users (username, user_email, user_password, user_photo) VALUES ('{$username}', '{$user_email}', '{$user_password}', '{$user_photo}')");
+        $last_id = last_id();
+        confirm($query);
+        set_message("New user was added: ID {$last_id}");
+        redirect("index.php?users");
+    }
+}
 
 ?>
