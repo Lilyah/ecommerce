@@ -556,7 +556,7 @@ function get_reports(){
                 <td>{$row['product_price']}</td>
                 <td>{$row['product_quantity']}</td>
                 <td>
-                    <a class="btn btn-danger" href="../../resources/templates/back/delete_product.php?id={$row['product_id']}">Delete</a>
+                    <a class="btn btn-danger" href="../../resources/templates/back/delete_report.php?id={$row['report_id']}">Delete</a>
                 </td>
             </tr>
 
