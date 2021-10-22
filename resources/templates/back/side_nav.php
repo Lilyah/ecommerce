@@ -21,6 +21,9 @@
         <li>
             <a href="index?users"><i class="fa fa-group"></i> Users</a>
         </li>
+        <li>
+            <a href="index?slides"><i class="fa fa-arrows-h"></i> Slides</a>
+        </li>
     
     </ul>
 </div>
