@@ -566,4 +566,39 @@ function get_reports(){
     }
 }
 
+
+/* Slider
+*/
+function add_slides (){
+    
+}
+
+
+/* Slider
+*/
+function get_current_slide (){
+    
+}
+
+
+/* Slider
+*/
+function get_slides (){
+    
+}
+
+
+/* Slider
+*/
+function get_active (){
+
+}
+
+
+/* Slider
+*/
+function get_slide_thumbnails (){
+
+}
+
 ?>
