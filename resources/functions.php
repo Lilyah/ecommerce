@@ -583,8 +583,22 @@ function get_current_slide (){
 
 /* Slider
 */
-function get_slides (){
-    
+function get_slides(){
+    $query = query("SELECT * FROM slides");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+        $slide_image = display_picture($row['slide_image']);
+        $slides = <<<DELIMETER
+
+        <div class="item">
+            <img class="slide-image" src="../resources/{$slide_image}" alt="">
+        </div>
+
+        DELIMETER;
+
+        echo $slides;
+    }
 }
 
 
