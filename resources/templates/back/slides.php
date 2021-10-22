@@ -2,10 +2,14 @@
 
     <h3 class="bg-success"></h3>
 
-    <?php add_slides() ?>
+    <?php 
+      add_slides() 
+    ?>
 
     <h4 class="text-center bg-success">
-      <?php display_message(); ?>
+      <?php 
+        display_message(); 
+      ?>
     </h4>
 
     <div class="col-xs-4">
@@ -29,9 +33,9 @@
 
     </div>
 
-    <div class="col-xs-8">
-      <img src="https://via.placeholder.com/800x300" alt="">
-    </div>
+    <?php 
+      get_current_slide_in_admin()
+    ?>
 
   </div><!-- ROW-->
 
