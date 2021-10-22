@@ -567,10 +567,23 @@ function get_reports(){
 }
 
 
-/* Slider
+/* Adding banners from admin panem
+/* admin/slides
 */
-function add_slides (){
-    
+function add_slides(){
+
+    if(isset($_POST['add_slide']) && trim($_POST['slide_title']) && $_FILES['file']['name'] != "" ){
+        $slide_title        = escape_string($_POST['slide_title']);
+        $slide_image        = escape_string($_FILES['file']['name']);
+        $slide_image_tmp    = escape_string($_FILES['file']['tmp_name']);
+
+        move_uploaded_file($slide_image_tmp, UPLOAD_DIRECTORY . DS . $slide_image);
+
+        $query = query("INSERT INTO slides (slide_title, slide_image) VALUES ('{$slide_title}', '{$slide_image}')");
+        confirm($query);
+        set_message("New banner was added");
+
+    }
 }
 
 
