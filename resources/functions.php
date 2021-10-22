@@ -587,14 +587,30 @@ function add_slides(){
 }
 
 
-/* Slider
+/* Displaying the last uploadet banner in admin panel
+/* admin/slides
 */
-function get_current_slide (){
-    
+function get_current_slide_in_admin(){
+    $query = query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
+    confirm($query);
+
+    while($row = fetch_array($query)){
+        $slide_image = display_picture($row['slide_image']);
+        $slide_current = <<<DELIMETER
+
+        <div class="col-xs-8">
+            <img class="img-responsive" src="../../resources/{$slide_image}" alt="">
+        </div>
+
+        DELIMETER;
+
+        echo $slide_current;
+    }
 }
 
 
-/* Slider
+/* Displaying all slides becides the active one (the first one) on front slider
+/* public/index
 */
 function get_slides(){
     $query = query("SELECT * FROM slides");
@@ -615,7 +631,8 @@ function get_slides(){
 }
 
 
-/* Slider
+/* Displaying the active slide on front slider
+/* public/index
 */
 function get_active_slide(){
     $query = query("SELECT * FROM slides ORDER BY slide_id DESC LIMIT 1");
