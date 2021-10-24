@@ -655,8 +655,24 @@ function get_active_slide(){
 
 /* Slider
 */
-function get_slide_thumbnails (){
+function get_slide_thumbnails_in_admin(){
+    $query = query("SELECT * FROM slides ORDER BY slide_id DESC");
+    confirm($query);
 
+    while($row = fetch_array($query)){
+        $slide_image = display_picture($row['slide_image']);
+        $slide_thumbnail = <<<DELIMETER
+
+        <div class="col-xs-6 cold-md-3">
+            <a href="">
+              <img class="img-responsive" style="margin-top:10px;" src="../../resources/{$slide_image}" alt="">
+            </a>
+        </div>
+
+        DELIMETER;
+
+        echo $slide_thumbnail;
+    }
 }
 
 ?>
