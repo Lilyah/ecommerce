@@ -662,13 +662,15 @@ function get_slide_thumbnails_in_admin(){
     while($row = fetch_array($query)){
         $slide_image = display_picture($row['slide_image']);
         $slide_thumbnail = <<<DELIMETER
-
+    
         <div class="col-xs-6 cold-md-3">
-            <a href="">
-              <img class="img-responsive" style="margin-top:10px;" src="../../resources/{$slide_image}" alt="">
-            </a>
+        <hr>
+                <a href="">
+                  <img class="img-responsive" style="margin-top: 10px;" src="../../resources/{$slide_image}" alt="">
+                </a>
+                <a class="btn btn-danger pull-right" style="margin-top: 3px;" href="../../resources/templates/back/delete_slide.php?id={$row['slide_id']}">Delete</a>
         </div>
-
+        
         DELIMETER;
 
         echo $slide_thumbnail;
