@@ -44,6 +44,9 @@
   <h1>Slides Available</h1>
 
   <div class="row">
+    <?php 
+      get_slide_thumbnails_in_admin() 
+    ?>
   </div>
 
 
