@@ -59,7 +59,7 @@ function cart(){
 
             if(substr($name, 0, 8) == "product_"){
 
-                $lenght = strlen($name) - 8;
+                $lenght = strlen($name);
                 $id = substr($name, 8, $lenght);
 
                 $query = query("SELECT * FROM products WHERE product_id = " . escape_string($id) . " ");
