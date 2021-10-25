@@ -668,7 +668,7 @@ function get_slide_thumbnails_in_admin(){
                 <a href="">
                   <img class="img-responsive" style="margin-top: 10px;" src="../../resources/{$slide_image}" alt="">
                 </a>
-                <a class="btn btn-danger pull-right" style="margin-top: 3px;" href="../../resources/templates/back/delete_slide.php?id={$row['slide_id']}">Delete</a>
+                <a class="btn btn-danger image_container pull-right" style="margin-top: 3px;" href="../../resources/templates/back/delete_slide.php?id={$row['slide_id']}">Delete</a>
         </div>
         
         DELIMETER;
