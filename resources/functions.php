@@ -67,7 +67,75 @@ function get_products(){
     $query = query("SELECT * FROM products WHERE product_quantity >= 1");
     confirm($query);
 
-    while($row = fetch_array($query)){
+    /* Developing pagination
+    */
+    /* Counting the number of products in the DB */
+    $rows = mysqli_num_rows($query);
+    if(isset($_GET['page'])){
+        $page = preg_replace('#[^0-9]#', '', $_GET['page']);
+    } else {
+        $page = 1;
+    }
+
+    $perPage = 6; // Products per page
+    $lastPage = ceil($rows / $perPage); // Calculating witch is the last page
+
+    if($page < 1){
+        $page = 1;
+    } elseif($page > $lastPage){
+        $page = $lastPage;
+    };
+
+    /* The middle numbers in pagination system */
+    $middleNumbers = '';
+    $subtracting1 = $page - 1;
+    $subtracting2 = $page - 2;
+    $addition1    = $page + 1;
+    $addition2    = $page + 2;
+
+    if($page == 1){
+        $middleNumbers .= '<li class="page-item active"><a>' .$page. '</a></li>';
+        $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$addition1.'">' .$addition1. '</a></li>';
+    } elseif ($page == $lastPage){
+        $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$subtracting1.'">' .$subtracting1. '</a></li>';
+        $middleNumbers .= '<li class="page-item active"><a>' .$page. '</a></li>';
+    } elseif ($page > 2 && $page < ($lastPage - 1)){
+        $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$subtracting2.'">' .$subtracting2. '</a></li>';
+        $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$subtracting1.'">' .$subtracting1. '</a></li>';
+        $middleNumbers .= '<li class="page-item active"><a>' .$page. '</a></li>';
+        $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$addition1.'">' .$addition1. '</a></li>';
+        $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$addition2.'">' .$addition2. '</a></li>';
+    } elseif ($page > 1 && $page < $lastPage){
+        $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$subtracting1.'">' .$subtracting1. '</a></li>';
+        $middleNumbers .= '<li class="page-item active"><a>' .$page. '</a></li>';
+        $middleNumbers .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$addition1.'">' .$addition1. '</a></li>';
+    }
+
+    /* The following code limit the showing product per page at 6s
+    /* and at the same time it says "start from 6, 12, 18 etc... 
+    */
+    $limit = 'LIMIT ' . ($page-1)*$perPage . ',' . $perPage;
+    $query2 = query("SELECT * FROM products $limit");
+    confirm($query2);
+
+    $outputPagination = "";
+
+    // Displaying the "Back" btn
+    if($page != 1){
+        $prev = $page -1;
+        $outputPagination .='<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$prev.'">Back</a></li>';
+    }
+
+    // Displaying the middle numbers
+    $outputPagination .= $middleNumbers;
+
+    // Displaying the "Next" btn
+    if($page != $lastPage){
+        $next = $page +1;
+        $outputPagination .='<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page='.$next.'">Next</a></li>';
+    }
+
+    while($row = fetch_array($query2)){
         $product_image = display_picture($row['product_image']);
         $product = <<<DELIMETER
         
@@ -88,6 +156,9 @@ function get_products(){
 
         echo $product;
     }
+   
+    echo "<div class='text-center'><ul class='pagination'>{$outputPagination}</ul></div>";
+
 }
 
 
