@@ -14,7 +14,7 @@
 
 
 ## General Information
-- The purpose of the project is to master procedural PHP of the developer
+- The purpose of the project is to master procedural PHP. 
 
 ## Technologies Used
 - PHP - [version 7](https://www.php.net/)
@@ -33,8 +33,8 @@
 
 
 ## Setup for local environment
-- Install and configurate [PHP 7.*](https://www.php.net/)
-
+- Install [PHP 7.*](https://www.php.net/)
+- Used development environment [XAMPP](https://www.apachefriends.org/index.html)
 
 ## Project Status
 Project is: _finished_
