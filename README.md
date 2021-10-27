@@ -27,7 +27,7 @@
 
 
 ## Screenshots
-![index](./img/index.ong)
+![index](./img/index.png)
 ![admin/index?products](./img/admin_view_products.png)
 ![checkout](./img/checkout.png)
 ![paypal](./img/paypal_integration.png)
