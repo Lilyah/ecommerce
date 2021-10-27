@@ -27,9 +27,10 @@
 
 
 ## Screenshots
-![index](./img/#)
-![admin/index](./img/#)
-![cart](./img/#)
+![index](./img/index.ong)
+![admin/index?products](./img/admin_view_products.png)
+![checkout](./img/checkout.png)
+![paypal](./img/paypal_integration.png)
 
 
 ## Setup for local environment
